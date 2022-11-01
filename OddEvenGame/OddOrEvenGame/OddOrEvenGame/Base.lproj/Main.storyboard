@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -55,11 +57,11 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uA-rC-kDC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uA-rC-kDC">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.43401955069999998" green="0.51728408599999998" blue="0.96848052740000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="eRl-1r-q7t"/>
+                                    <constraint firstAttribute="height" constant="50" id="5N8-iK-RGW"/>
                                 </constraints>
                                 <state key="normal" title="GAME START">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,20 +71,21 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2uA-rC-kDC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="EOn-45-fqr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pL2-FF-xlW" secondAttribute="trailing" constant="10" id="K3s-z7-cY6"/>
+                            <constraint firstItem="2uA-rC-kDC" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="KuO-Id-SXQ"/>
+                            <constraint firstItem="2uA-rC-kDC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QI9-sU-Kh6"/>
                             <constraint firstItem="pL2-FF-xlW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RQP-8I-PVi"/>
                             <constraint firstItem="pL2-FF-xlW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Rpv-kJ-zlD"/>
-                            <constraint firstItem="2uA-rC-kDC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="a6y-3s-caL"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2uA-rC-kDC" secondAttribute="trailing" id="djh-ER-DVF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2uA-rC-kDC" secondAttribute="bottom" id="f2E-o8-PtH"/>
                             <constraint firstItem="pL2-FF-xlW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="fA4-ie-eUw"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="computerBallCountLbl" destination="GkZ-1y-NRM" id="Ydk-pm-5VN"/>
+                        <outlet property="resultLbl" destination="Mpd-t4-NwR" id="BDQ-vO-CBl"/>
                         <outlet property="userBallCountLbl" destination="eYJ-1K-hxB" id="RSU-GD-d4T"/>
                     </connections>
                 </viewController>
@@ -91,4 +94,9 @@
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
