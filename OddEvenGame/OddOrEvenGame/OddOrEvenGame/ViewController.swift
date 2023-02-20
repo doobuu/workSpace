@@ -20,6 +20,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var computerBallCountLbl: UILabel!
     @IBOutlet weak var userBallCountLbl: UILabel!
     @IBOutlet weak var resultLbl: UILabel!
+    @IBOutlet weak var imageContainer: UIView!
+    // 게임시작 버튼을 누르기 전에는 화면이 보이지 않아야 하기 때문에
+    @IBOutlet weak var fistImage: UIImageView!
+    
+    
     
     var comBallsCount: Int = 20
     var userBallsCount: Int = 20
@@ -34,13 +39,37 @@ class ViewController: UIViewController {
         // computerBallCountLbl.text = String(comBallsCount) 로 변환
         // userBallCountLbl.text = 20
         // userBallCountLbl.text = String(userBallsCount) 로 변환
+        self.imageContainer.isHidden = true
+        // viewDidLoad 화면에서는 imageContainer view 가 보이지 않아야 하기 때문에
         
     }
     
     @IBAction func gameStartPressed(_ sender: Any) {
-        print("게임을 시작힙니다")
-        print(self.getRandom())
+        self.imageContainer.isHidden = false
+        // viewDidLoad 화면에서는 보이지 않았던 imageContainer view가 gameBtn을 누르면 보여야 하기 때문에 거짓으로 코드 작성
+        /* print("게임을 시작힙니다")
+        print(self.getRandom()) */
         
+        /* UIView.animate(withDuration: 3.0) {
+            self.fistImage.transform =  CGAffineTransform(scaleX: 5, y: 5)
+            self.fistImage.transform =  CGAffineTransform(scaleX: 1, y: 1)
+            // 3.0 은 속도를 나타냄 (3초) 5,5 와 1,1 은 크기를 나타냄 커졌다 작아지는 애니메이션을 주기 위함
+        }*/
+        
+        UIView.animate(withDuration: 3.0) {
+            self.fistImage.transform =  CGAffineTransform(scaleX: 5, y: 5)
+            self.fistImage.transform =  CGAffineTransform(scaleX: 1, y: 1)
+        } completion: { Bool in
+            self.imageContainer.isHidden = true
+            // 해당 fist 애니메이션 작동 후 이미지가 사라져야 다른 화면이 보이기 때문에 애니메이션 작동 후 안 보이게 만들어 줌
+            self.showAlert()
+            // showAlert 함수를 띄우기 위해서 작성한 코드
+        }
+        
+    }
+    
+    func showAlert() {
+        // 깃헙을 확인해 보면 fistImage를 넣기 전에는 gameStartPressed 함수 안에 존재했던 코드들이 게임 스타트 버튼을 누르고 fist image가 먼저 나온 다음 홀짝을 정하는 버튼이 나와야 하기 때문에 showAlert 함수를 새로 만들어 그 안으로 이전의 코드들을 이동시킴
         let alert = UIAlertController.init(title: "GAME START", message: "홀과 짝 중 하나를 선택하세요", preferredStyle: .alert)
             // let alert 선언한 alert UIAlertController.init(preferredStyle 에서 .alert는 alert 창이 화면 가운데에서 생성이 되고 .actionSheet는 화면 하단에서 위로 스크롤 형태로 셍성된다
             // GAME START Btn을 누른 후 생성되는 알람창
@@ -128,15 +157,23 @@ class ViewController: UIViewController {
             // comType이 사용자가 select한 값과 같으면을 나타내는 구문
             print("USER WIN")
             result = result + "(USER WIN)"
+            self.resultLbl.text = result
             self.calculateBalls(winner: "user", count: count)
+            
         } else {
             print("COMPUTER WIN")
             result = result + "(COMPUTER WIN)"
+            self.resultLbl.text = result
             self.calculateBalls(winner: "com", count: count)
+            
         }
         
-        self.resultLbl.text = result
     }
+    
+    func checkAccoutEmpty(balls : Int) -> Bool {
+        return balls == 0
+    }
+    
     func calculateBalls(winner: String, count: Int) {
         // count는 사용자가 배팅한 값
         if winner == "com" {
@@ -147,9 +184,27 @@ class ViewController: UIViewController {
             self.userBallsCount = self.userBallsCount - count
             // 현재 구문은 사용자 졌을 때 배팅을 한 값만큼 잃는 것을 표현하기 때문에 잃은 그 값만큼 컴퓨터가 얻는 구문 또한 필요
             self.comBallsCount = self.comBallsCount + count
+            
+            if self.checkAccoutEmpty(balls: userBallsCount) {
+                self.resultLbl.text = "The finally winner is a computer"
+            }
+            /* if self.checkAccoutEmpty(balls: self.userBallsCount) {
+                self.resultLbl.text = "The finally winner is a computer"
+                해당 수식 오류 -> resultLbl 이미 result 결과값을 보여주고 있기 때문에 해당 함수에서 보여질 수 없는 오류를 갖고 있음 따라서, 이 코드에서 구현 X
+             } */
         } else {
             self.userBallsCount = self.userBallsCount + count
             self.comBallsCount = self.comBallsCount - count
+            
+            if self.checkAccoutEmpty(balls: self.comBallsCount) {
+                self.resultLbl.text = "The finally winner is the user"
+            }
+            /* if self.checkAccoutEmpty(balls: self.userBallsCount) {
+                self.resultLbl.text = "The finally winner is the user"
+                해당 수식 오류 -> resultLbl 이미 result 결과값을 보여주고 있기 때문에 해당 함수에서 보여질 수 없는 오류를 갖고 있음 따라서, 이 코드에서 구현 X
+                기존 self.resultLbl.text = result 수식이 getWinner 함수 밖에 존재했는데 그렇게 되면 효율성 있는 로직 구현 불가능으로 getWinner 수식 안에 있는 각각의 if 함수 안에 존재하게 변형한다
+            }
+             */
         }
         
         self.userBallCountLbl.text = "\(self.userBallsCount)"
@@ -161,8 +216,6 @@ class ViewController: UIViewController {
            self.userBallCountLbl.text = "\(self.userBallsCount)"
            self.computerBallCountLbl.text = "\(self.comBallsCount)"
          */
-          
-         
          
     }
    
