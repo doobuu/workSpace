@@ -13,7 +13,16 @@
  3 결과에 대한 값이 화면에 보여진다
  */
 
+/*
+ 구현할 프로세스 추가 정리
+ 1 음악 파일을 추가한다
+ 2 AVFoundation 프레임워크를 추가한다
+ 3 AVAudioPlayer 객체를 만들어 음악을 실행한다
+ */
+
 import UIKit
+import AVFoundation
+// 사용하고자 하는 프레임 워크를 선언하면 사용 가능하다
 
 class ViewController: UIViewController {
 
@@ -24,8 +33,7 @@ class ViewController: UIViewController {
     // 게임시작 버튼을 누르기 전에는 화면이 보이지 않아야 하기 때문에
     @IBOutlet weak var fistImage: UIImageView!
     
-    
-    
+    var player: AVAudioPlayer?
     var comBallsCount: Int = 20
     var userBallsCount: Int = 20
     
@@ -42,6 +50,46 @@ class ViewController: UIViewController {
         self.imageContainer.isHidden = true
         // viewDidLoad 화면에서는 imageContainer view 가 보이지 않아야 하기 때문에
         
+        self.play(fileName: "intro")
+        // 해당 코드를 실행하기 전 파일을 호출해 해당 경로를 잘 가지고 오는지 로그로 확인할 수 있다 테스트
+        
+    }
+    
+    func play(fileName: String) {
+        let filePath = Bundle.main.url(forResource: fileName, withExtension: "mp3")
+        // print("filePath \(filePath)") -> String interpolation produces a debug description for an optional value; did you mean to make this explicit? 해당 오류에 대해 찾아보기
+        // 옵션 버튼을 누른 후 상수를 누르면 선언된 상수에 대한 속성을 볼 수 있다 현재는 ' let filePath: URL? '
+        // filePath의 경로를 가지고 오는지 확인하기 위해 로그로 표시해 본다 -> print("filePath \(filePath)")
+        
+        guard let path = filePath else {
+            return
+        }
+        // 컴파일 에러를 처리하기 위해서 guard문을 사용해 수정한다 -> 해당 컴파일 오류는 ' Value of optional type 'URL?' must be unwrapped to a value of type 'URL' '
+        
+        // self.player = try? AVAudioPlayer(contentsOf: path)
+        // try -> 해당 수식 오류가 발생 유무가 알 수 없을 때 실행하기 위함, 옵셔널을 추가함으로 에러 발생시 미리 반환되기 때문에 간단하게 에러를 처리할 수 있다
+        // filePath가 nil일 경우에는 return을 시키고, 값이 있을 경우에는 AVAudioPlayer 객체에서 경로를 갖고 오도록 한다
+        // 예외 에러 처리에 관련해서 try를 옵셔널로 사용하는 방법도 있고, 옵셔널로 사용하지 않고 docatch 로 사용할 수도 있다
+        
+        do {
+            self.player = try AVAudioPlayer(contentsOf: path)
+            
+            guard let soundPlayer = self.player else {
+                return
+                // ' var player: AVAudioPlayer? ' -> player를 옵셔널로 선언했기 때문에 옵셔널 자체가 값의 유무를 모르기 때문에 guard문을 사용하여 오류를 예방해 오류가 발생하면 return 시킨다
+            }
+            
+            soundPlayer.prepareToPlay()
+            soundPlayer.play()
+            // prepareToPlay() 메서드는 버퍼를 미리 로드하여 재생할 오디오 플레이어를 미리 준비한다 그래서 이 함수를 호출하면 버퍼를 미리 로드하고 재생에 필요한 오디오 하드웨어를 가져와 플레이 메서드를 호출하는 시점과 사운드 출력을 시작하는 시점 사이에 지연을 최소화한다
+            // play() 함수는 비동기적으로 사운드를 재생한다 오디오 플레이어가 준비되지 않은 상태에서 이 메서드를 호출하게 되면 암시적으로 프리페얼투메세지가 호출된다 
+            
+        } catch let Error {
+            print("\(Error.localizedDescription)")
+        }
+        // docatch문의 try를 선언해서 사용할 수 있고 특정에러가 발생하면 catch를 통해서 해당 에러타입에 따라 대항하는 실행코드를 작성할 수도 있다 에러 발생시 출력문을 보여주게 한다
+        //
+        
     }
     
     @IBAction func gameStartPressed(_ sender: Any) {
@@ -55,6 +103,8 @@ class ViewController: UIViewController {
             self.fistImage.transform =  CGAffineTransform(scaleX: 1, y: 1)
             // 3.0 은 속도를 나타냄 (3초) 5,5 와 1,1 은 크기를 나타냄 커졌다 작아지는 애니메이션을 주기 위함
         }*/
+        
+        self.play(fileName: "gamestart")
         
         UIView.animate(withDuration: 3.0) {
             self.fistImage.transform =  CGAffineTransform(scaleX: 5, y: 5)
@@ -88,6 +138,8 @@ class ViewController: UIViewController {
             print("홀 버튼을 클릭했습니다")
             // print(alert.textFields?.first?.text)
             
+            self.play(fileName: "click")
+            
             guard let input = alert.textFields?.first?.text else {
                 return
             }
@@ -112,6 +164,8 @@ class ViewController: UIViewController {
         
         let evenBtn = UIAlertAction.init(title: "짝", style: .default) { _ in
             print("짝 버튼을 클릭했습니다")
+            
+            self.play(fileName: "click")
             
             guard let input = alert.textFields?.first?.text, let value = Int(input) else {
                 return
