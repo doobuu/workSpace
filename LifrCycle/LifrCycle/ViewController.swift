@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     // root View Controller 삭제 후 navigation Controller의 속성창에서 is Initial View Controller를 체크한다
     // navigation View 클릭 후 'control'을 누르면서 마우스 오른쪽 버튼으로 viewController로 드래그 앤 드롭, Relationship Segue의 root View Controller를 선택한다
     // Main view Controller에 Btn을 추가로 만든 후, MainViewController에 UIBut를 등록한다
-    // 새로운 ViewController를 새로 생성한 후, main에 존재하는 이미지 클릭 후 속성창에서 class,storyBoardID를 수정한다 
+    // 새로운 ViewController를 새로 생성한 후, main에 존재하는 이미지 클릭 후 속성창에서 class,storyBoardID를 수정한다
     
     @IBAction func btnPressed(_ sender: UIButton) {
         
