@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     }
     @IBAction func nextPageBtn(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "SecondViewController") as SecondViewController
+        let secondVC = storyboard.instantiateViewController(withIdentifier: "SecondViewController")
         
         self.navigationController?.pushViewController(secondVC, animated: true)
         // 꼭 () 안에 선언한 상수를 넣어야 한다

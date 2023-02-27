@@ -34,4 +34,13 @@ class SecondViewController: UIViewController {
         self.show(bViewController, sender: self)
     }
     
+    @IBAction func cvcBtn(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let cViewController = storyboard.instantiateViewController(withIdentifier: "CPageViewController")
+        
+        
+        cViewController.modalPresentationStyle = .fullScreen
+        
+        present(cViewController, animated: true)
+    }
 }

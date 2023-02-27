@@ -22,6 +22,8 @@ class APageViewController: UIViewController {
         //storyboard를 통해 두번쨰 화면의 storyboard ID를 참조하여 뷰 컨트롤러를 가져옵니다.
         aNextVC.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         //화면 전환 애니메이션을 설정합니다. coverVertical 외에도 다양한 옵션이 있습니다.
+        // nextVC.modalPresentationStyle = .fullScreen
+        // 풀스키린으로 만드는 방법도 있다
         self.present(aNextVC, animated: true)
         //인자값으로 다음 뷰 컨트롤러를 넣고 present 메소드를 호출합니다.
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040F393C29ACB168004E9EEE /* CPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F393B29ACB168004E9EEE /* CPageViewController.swift */; };
 		042321CD29AB954D0079DAC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042321CC29AB954D0079DAC7 /* AppDelegate.swift */; };
 		042321CF29AB954D0079DAC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042321CE29AB954D0079DAC7 /* SceneDelegate.swift */; };
 		042321D129AB954D0079DAC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042321D029AB954D0079DAC7 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040F393B29ACB168004E9EEE /* CPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPageViewController.swift; sourceTree = "<group>"; };
 		042321C929AB954D0079DAC7 /* SceneChangeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneChangeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		042321CC29AB954D0079DAC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		042321CE29AB954D0079DAC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				042321FC29AB95B90079DAC7 /* SecondViewController.swift */,
 				042321FE29AB99900079DAC7 /* APageViewController.swift */,
 				0423220029AB999E0079DAC7 /* BPageViewController.swift */,
+				040F393B29ACB168004E9EEE /* CPageViewController.swift */,
 				0423220229ABA8960079DAC7 /* ANextViewController.swift */,
 				0423220429ABA89E0079DAC7 /* BNextViewController.swift */,
 				042321D229AB954D0079DAC7 /* Main.storyboard */,
@@ -281,6 +284,7 @@
 				042321CD29AB954D0079DAC7 /* AppDelegate.swift in Sources */,
 				0423220329ABA8960079DAC7 /* ANextViewController.swift in Sources */,
 				042321CF29AB954D0079DAC7 /* SceneDelegate.swift in Sources */,
+				040F393C29ACB168004E9EEE /* CPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
