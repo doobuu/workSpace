@@ -5,6 +5,12 @@
 //  Created by 모모 on 2023/02/26.
 //
 
+// Scene Change 실슺
+// 1 navigation contorller 이용한 화면 전환 (push)
+// 2 show 메서드를 이용한 화면 전환 (메모리 관리 위험으로 거의 사용하지 않음)
+// 3 present 메서드를 이용한 화면 전환 
+
+
 import UIKit
 
 class ViewController: UIViewController {

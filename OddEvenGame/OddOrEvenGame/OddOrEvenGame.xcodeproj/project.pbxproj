@@ -10,6 +10,7 @@
 		046FACE329A65DE000583355 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 046FACE029A65DE000583355 /* click.mp3 */; };
 		046FACE429A65DE000583355 /* gamestart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 046FACE129A65DE000583355 /* gamestart.mp3 */; };
 		046FACE529A65DE000583355 /* intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 046FACE229A65DE000583355 /* intro.mp3 */; };
+		04AA09EA29C038B800D85A23 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AA09E929C038B800D85A23 /* SettingViewController.swift */; };
 		04D7FE28287C1EFA00FB8769 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7FE27287C1EFA00FB8769 /* AppDelegate.swift */; };
 		04D7FE2A287C1EFA00FB8769 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7FE29287C1EFA00FB8769 /* SceneDelegate.swift */; };
 		04D7FE2C287C1EFA00FB8769 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7FE2B287C1EFA00FB8769 /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 		046FACE029A65DE000583355 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
 		046FACE129A65DE000583355 /* gamestart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamestart.mp3; sourceTree = "<group>"; };
 		046FACE229A65DE000583355 /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intro.mp3; sourceTree = "<group>"; };
+		04AA09E929C038B800D85A23 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		04D7FE24287C1EFA00FB8769 /* OddOrEvenGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OddOrEvenGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D7FE27287C1EFA00FB8769 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D7FE29287C1EFA00FB8769 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				04D7FE27287C1EFA00FB8769 /* AppDelegate.swift */,
 				04D7FE29287C1EFA00FB8769 /* SceneDelegate.swift */,
+				04AA09E929C038B800D85A23 /* SettingViewController.swift */,
 				04D7FE2B287C1EFA00FB8769 /* ViewController.swift */,
 				04D7FE2D287C1EFA00FB8769 /* Main.storyboard */,
 				04D7FE30287C1EFC00FB8769 /* Assets.xcassets */,
@@ -223,6 +226,7 @@
 				04D7FE2C287C1EFA00FB8769 /* ViewController.swift in Sources */,
 				04D7FE28287C1EFA00FB8769 /* AppDelegate.swift in Sources */,
 				04D7FE2A287C1EFA00FB8769 /* SceneDelegate.swift in Sources */,
+				04AA09EA29C038B800D85A23 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

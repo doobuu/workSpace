@@ -24,7 +24,9 @@ import UIKit
 import AVFoundation
 // 사용하고자 하는 프레임 워크를 선언하면 사용 가능하다
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SettingDelegate {
+
+    
 
     @IBOutlet weak var computerBallCountLbl: UILabel!
     @IBOutlet weak var userBallCountLbl: UILabel!
@@ -117,6 +119,21 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    @IBAction func settingBtn(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let settingVC = storyboard.instantiateViewController(identifier: "SettingViewController") as! SettingViewController
+        // -1 let settingVC = storyboard.instantiateViewController(withIdentifier: "SettingViewController")
+        // -1처럼도 가능하다
+        // SettingViewController에서의 delegate를 MainViewController에 위임한다
+        settingVC.settingDelegate = self
+        // delegate 위임 -> identifier이 아닌 withIdentifier로 사용할 경우 오류가 발생 -> 해당 오류는 아직 해결 못함 Value of type 'UIViewController' has no member 'settingDelegate'
+        settingVC.modalPresentationStyle = .fullScreen
+        // -1 self.present(settingVC, animated: true)
+        self.present(settingVC, animated: true, completion: nil)
+        // 화면전환을 present를 이용해서 할 경우 현재의 코드(identifier)와 -1의 코드(withIdentifier) 모두 사용이 가능하다 하지만 Delegate를 위임할 경우 withIdentifier로 사용할 경우 위와 같이 해결하지 못한 오류가 발생하기 때문에 이런 오류를 사전에 예방하기 위해서 identifier로 이용하는 것을 추천 간단한 화면전환은 상관없음
+    }
+    
     
     func showAlert() {
         // 깃헙을 확인해 보면 fistImage를 넣기 전에는 gameStartPressed 함수 안에 존재했던 코드들이 게임 스타트 버튼을 누르고 fist image가 먼저 나온 다음 홀짝을 정하는 버튼이 나와야 하기 때문에 showAlert 함수를 새로 만들어 그 안으로 이전의 코드들을 이동시킴
@@ -278,6 +295,13 @@ class ViewController: UIViewController {
         //arc4random_uniform(10)은 0-9까지 사용하기 때문에 1-10까지 필요한 이번 상황에서는 1을 더한다
         //Cannot convert return expression of type 'UInt32' to return type 'Int' 데이터 타입이 UInt32이기 때문에 Int로 리턴을 하기 위해서는 통변환 즉 타입캐스팅을 해야 함 ex) arc4random_uniform(10)+1 -> Int(arc4random_uniform(10)+1)
         //랜덤값이 잘 적용되는지 확인하기 위해서는 게임스타트 버튼을 누른 후 뜨는 팝업창들을 일시적으로 주석을 건 다음 게임스타트 버튼에서 확인하기
+    }
+    
+    func getBallsCount(ballsCount: Int) {
+        self.userBallCountLbl.text = "\(ballsCount)"
+        self.computerBallCountLbl.text = "\(ballsCount)"
+        // 해당 getBallsCount 함수는 SettingViewController에 선언한 프로토콜인 SettingDelegate를 MainViewController의 class에 채택하고 난 후 준수를 하지 않아 발생한 오류인 -> Type 'ViewController' does not contorm to protocol 'SettingDelegate' Do you want to add protocol stubs? 에서 fix를 눌러 생성된 함수이다 이 함수는 클래스 바로 밑이 아닌 맨 밑에 생성했다
+        // 데이터가 전달이 되어 구슬 개수가 넘어왔을 때 홈화면에서의 사용자와 컴퓨터의 구슬 개수 변경을 위한 코드를 작성한다
     }
     
 
